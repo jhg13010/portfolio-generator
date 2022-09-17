@@ -35,9 +35,24 @@ const promptUser = () => {
             }
         }, 
         {
+            type:'confirm',
+            name:'confirmAbout',
+            message: 'Would you like to enter some information about yourself via an "About" section?',
+            default: true
+        },
+        {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself'
+            message: 'Provide some information about yourself',
+            //'when' method passes an object of the already answered questions through itself to make a decision
+            when: ({confirmAbout}) => {
+                //if confirmAbout is true (yes) then the question will display
+                if (confirmAbout) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ]);
 };
