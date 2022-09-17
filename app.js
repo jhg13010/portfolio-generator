@@ -1,20 +1,38 @@
 //call inquire module from npm download (3rd party)
 const inquirer = require('inquirer');
+const { animationFrameScheduler } = require('rxjs');
 
  //function to call prompt method from inquirer
 const promptUser = () => {
     return inquirer.prompt ([
         //receive an array of objects in the argument => called the 'question object'
         {
-            //'input' will receive a text reply
+            //theese are all methods that can be researched via npm documents on the inquirer package  
             type: 'input',
             name: 'name',
-          message: 'What is your name?'
+          message: 'What is your name?',
+          //validate method receives the nameInput as an argument 
+          validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('Please enter your name!');
+                return false;
+            }
+          }
         },
         {
             type: 'input',
             name:'github',
-            message: 'Enter your GitHub Username'
+            message: 'Enter your GitHub Username',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your GitHub Username');
+                    return false;
+                }
+            }
         }, 
         {
             type: 'input',
@@ -43,12 +61,28 @@ const promptProject = portfolioData => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the name of your project'
+            message: 'What is the name of your project',
+            validate: projectName => {
+                if (projectName) {
+                    return true;
+                } else {
+                    console.log('Please enter your project name');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'description',
-            message: 'Provide a description of the project (Required)'
+            message: 'Provide a description of the project (Required)',
+            validate: projectDescription => {
+                if (projectDescription) {
+                    return true;
+                } else {
+                    console.log('Please enter your project description');
+                    return false;
+                }
+            }
         },
         {
             //type checkbox gives users options
@@ -60,7 +94,15 @@ const promptProject = portfolioData => {
         {
             tpye: 'input',
             name: 'link',
-            message: 'Enter the GitHub link to your project (Required)'
+            message: 'Enter the GitHub link to your project (Required)',
+            validate: projectLink => {
+                if (projectLink) {
+                    return true;
+                } else {
+                    console.log("Please enter your project's GitHub link");
+                    return false;
+                }
+            }
         },
         {
             //confirm is a Boolean response 
