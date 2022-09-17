@@ -1,6 +1,11 @@
+//calls file system module from node.js
+const fs = require('fs');
+
+//calls function from page-template module
+const generatePage = require('./src/page-template');
+
 //call inquire module from npm download (3rd party)
 const inquirer = require('inquirer');
-const { animationFrameScheduler } = require('rxjs');
 
  //function to call prompt method from inquirer
 const promptUser = () => {
@@ -147,19 +152,28 @@ const promptProject = portfolioData => {
     });
 };
 
+const mockData = {
+    name: 'Jarrett',
+    github: 'Jarrett',
+    projects: [{name: 'RunBuddy', description: 'test'}]
+}
+
 //promptUser function is called, then returns the answer as a 'Promise'
-promptUser()
+//promptUser()
     //.then method helps control sequence of the application
-    .then(promptProject)
-    .then(portfolioData => {
-        console.log(portfolioData);
-    });
+  //  .then(promptProject)
+    //.then(portfolioData => {
+      //  const pageHTML = generatePage(portfolioData);
 
-//calls file system module from node.js
-//const fs = require('fs');
+        //fs.writeFile('./index.html', pageHTML, err => {
+            //if (err) throw new Error(err);
 
-//calls function from page-template module
-//const generatePage = require('./src/page-template');
+            //console.log('Page created! Checkout index.html);
+        //});
+   // });
+
+   const pageHTML = generatePage(mockData);
+
 
 //const pageHTML = generatePage(name, github);
 

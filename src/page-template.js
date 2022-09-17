@@ -1,4 +1,16 @@
-const generatePage = (name, github) => {
+module.exports = templateData => {
+    //destructure projects, about, and the rest of the data from templateData based on key names 
+    //the '...' notation is the rest operator which indicates the rest of the data leftover after projects and about 
+    const {projects, about, ...header} = templateData;
+
+    
+
+
+
+
+
+
+
     return `
     <!DOCTYPE html>
     <html lang = "en">
@@ -10,12 +22,10 @@ const generatePage = (name, github) => {
     </head>
 
     <body>
-        <h1>${name}</h1>
-        <h2><a href="https://github.com/${github}">Github</a></h2>
+        <h1>${templateData.name}</h1>
+        <h2><a href="https://github.com/${templateData.github}">Github</a></h2>
     </body>
 
     </html?>
     `;
 };
-
-module.exports = generatePage;
