@@ -1,34 +1,33 @@
+//call inquire module from npm download (3rd party)
+const inquirer = require('inquirer');
+
+console.log(inquirer);
+
+inquirer 
+    //call prompt method from inquirer
+    .prompt([
+        //receive an array of objects in the argument => called the 'question object'
+        {
+            //'input' will receive a text reply
+            type: 'input',
+            name: 'name',
+          message: 'What is your name?'
+        }
+    ])
+    //answer is returned as a 'Promise'
+    .then(answers => console.log(answers));
+
+
 //calls file system module from node.js
-const fs = require('fs');
+//const fs = require('fs');
 
 //calls function from page-template module
-const generatePage = require('./src/page-template');
+//const generatePage = require('./src/page-template');
 
-// process is a global object that contains everything in the file 
-//argv is a property array of process that contains command line prompts 
+//const pageHTML = generatePage(name, github);
 
-//take the array process.argv and eliminate elements 0 (node) and 1 (app.js) 
-const profileDataArgs = process.argv.slice(2);
+//fs.writeFile('index.html', pageHTML, err => {
+//  if (err) throw err;
 
-//const name = profileDataArgs[0];
-//const github = profileDataArgs[1];
-
-//replaces the need to define both name and github via using assignment deconstructing
-const [name, github] = profileDataArgs;
-
-fs.writeFile('index.html', generatePage(name, github), err => {
-    if (err) throw err;
-
-    console.log('Portfolio complete! Checkout index.html to see the output!');
-});
-
-
-
-
-
-
-
-
-
-
-
+//console.log('Portfolio complete! Checkout index.html to see the output!');
+//});
