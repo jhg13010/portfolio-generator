@@ -152,33 +152,21 @@ const promptProject = portfolioData => {
     });
 };
 
-const mockData = {
-    name: 'Jarrett',
-    github: 'Jarrett',
-    projects: [{name: 'RunBuddy', description: 'test'}]
-}
+//const mockData = {
+    //name: 'Jarrett',
+    //github: 'Jarrett',
+    //about: 'test',
+    //projects: [{name: 'RunBuddy', description: 'test', languages: ['JavaScript', 'CSS', 'HTML'], link: 'test2', feature: true}]
+//}
 
 //promptUser function is called, then returns the answer as a 'Promise'
-//promptUser()
+promptUser()
     //.then method helps control sequence of the application
-  //  .then(promptProject)
-    //.then(portfolioData => {
-      //  const pageHTML = generatePage(portfolioData);
-
-        //fs.writeFile('./index.html', pageHTML, err => {
-            //if (err) throw new Error(err);
-
-            //console.log('Page created! Checkout index.html);
-        //});
-   // });
-
-   const pageHTML = generatePage(mockData);
-
-
-//const pageHTML = generatePage(name, github);
-
-//fs.writeFile('index.html', pageHTML, err => {
-//  if (err) throw err;
-
-//console.log('Portfolio complete! Checkout index.html to see the output!');
-//});
+    .then(promptProject)
+    .then(portfolioData => {
+        const pageHTML = generatePage(portfolioData);
+        fs.writeFile('./index.html', pageHTML, err => {
+            if (err) throw new Error(err);
+            console.log('Page created! Checkout index.html');
+        });
+    });
