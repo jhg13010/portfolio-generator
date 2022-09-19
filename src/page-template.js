@@ -19,7 +19,6 @@ const generateAbout = aboutText => {
 const generateProjects = projectsArr => {
 //use the filter method to find projects where the feature object is true 
 //then use the map method which functions like a forEach loop to extract project attributes 
-
     return `
         <section class="my-3" id="portfolio">
             <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
@@ -38,7 +37,6 @@ const generateProjects = projectsArr => {
                     `;
                 })
                 .join('')}
-
                 ${projectsArr.filter(({ feature}) => !feature).map(({ name, description, languages, link}) => {
                     return `
                         <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
@@ -74,7 +72,6 @@ module.exports = templateData => {
         <link rel="stylesheet" href="style.css"> 
         <title>Portfolio Demo</title>
     </head>
-
     <body>
         <header> 
             <div class="container flex-row justify-space-between align-center py-3"> 

@@ -1,12 +1,9 @@
 //calls file system module from node.js
 const fs = require('fs');
-
 //calls function from page-template module
 const generatePage = require('./src/page-template');
-
 //call inquire module from npm download (3rd party)
 const inquirer = require('inquirer');
-
  //function to call prompt method from inquirer
 const promptUser = () => {
     return inquirer.prompt ([
@@ -141,7 +138,7 @@ const promptProject = portfolioData => {
     .then(projectData => {
         //use array method '.push' to place projectData into projects array 
         portfolioData.projects.push(projectData);
-        //iff confirmAddProject is YES
+        //if confirmAddProject is YES
         if (projectData.confirmAddProject) {
             //call the promptProject function 
             return promptProject(portfolioData);
@@ -152,21 +149,23 @@ const promptProject = portfolioData => {
     });
 };
 
-//const mockData = {
-    //name: 'Jarrett',
-    //github: 'Jarrett',
-    //about: 'test',
-    //projects: [{name: 'RunBuddy', description: 'test', languages: ['JavaScript', 'CSS', 'HTML'], link: 'test2', feature: true}]
-//}
-
 //promptUser function is called, then returns the answer as a 'Promise'
 promptUser()
     //.then method helps control sequence of the application
     .then(promptProject)
     .then(portfolioData => {
-        const pageHTML = generatePage(portfolioData);
-        fs.writeFile('./index.html', pageHTML, err => {
-            if (err) throw new Error(err);
-            console.log('Page created! Checkout index.html');
-        });
-    });
+        return generatePage(portfolioData);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(writeFileRespone => {
+        console.log(writeFileRespone);
+        return copyFile();
+    })
+    .then(copyFileRespone => {
+        console.log(copyFileRespone);
+    })
+    .catch(err => {
+        console.log(err);
+    })
