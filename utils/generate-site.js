@@ -13,7 +13,7 @@ const writeFile = fileContent => {
             }
             //if file created, resolve promise and use then method below
             resolve({
-                ok: true;
+                ok: true,
                 message: 'File created!'
             });
         });
