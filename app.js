@@ -1,5 +1,4 @@
-//calls file system module from node.js
-const fs = require('fs');
+const {writeFile, copyFile} = require('./utils/generate-site.js')
 //calls function from page-template module
 const generatePage = require('./src/page-template');
 //call inquire module from npm download (3rd party)
