@@ -21,17 +21,17 @@ const writeFile = fileContent => {
     });
 };
 
-const copyFile = fileName => {
+const copyFile = () => {
     return new Promise((resolve, reject) => {
-        fs.copyFile()
-        if (err) {
-            reject(err);
-            return;
-        }
-
-        resolve({
-
-        })
-    })
-}
-
+        fs.copyFile('./src/style.css', './dist/style.css', err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve ({
+                ok: true, 
+                message: 'File copied!'
+            });
+        });
+    });
+};
